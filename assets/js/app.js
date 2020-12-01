@@ -12,3 +12,7 @@ var margin = {
   bottom: 60,
   left: 100
 };
+
+// Chart width and Height
+var chartWidth = svgWidth - margin.left - margin.right;
+var chartHeight = svgHeight - margin.top - margin.bottom;
