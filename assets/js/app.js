@@ -75,7 +75,7 @@ d3.csv('assets/data/data.csv').then(function(data){
     .attr('fill', 'pink')
     .attr('opacity', '.75');
 
-    // append text to data
+    // appending text to data
     var textGroup = chartGroup.selectAll('.stateText')
     .data(data)
     .enter()
@@ -87,7 +87,7 @@ d3.csv('assets/data/data.csv').then(function(data){
         })
     .attr('text-anchor', 'middle')
 
-    // initialize tooltip
+    // initializing tooltip
     var toolTip = d3.tip()
     .attr('class', 'tooltip')
     .offset([90, 90])
@@ -96,10 +96,10 @@ d3.csv('assets/data/data.csv').then(function(data){
 
     });
 
-    // create tooltip in chart
+    // creating tooltip chart
     chartGroup.call(toolTip);
 
-    // create event listeners to display and hide tooltip
+    // creating event listeners to display and hide tooltip
     circlesGroup.on('click', function(data){
         toolTip.show(data, this);
     })
@@ -114,3 +114,21 @@ d3.csv('assets/data/data.csv').then(function(data){
         .on('mouseout', function(data, index){
             toolTip.hide(data)
         })
+
+    // creating axes labels
+    chartGroup.append('text')
+    .attr('transform', 'rotate(-90)')
+    .attr('y', 0- margin.left + 40)
+    .attr('x', 0-(chartHeight /2))
+    .attr('dy', '1em')
+    .attr('class', 'axisText')
+    .text('Obesity (%)')
+
+    chartGroup.append("text")
+    .attr("transform", `translate(${chartWidth / 2}, ${chartHeight + margin.top + 30})`)
+    .attr("class", "axisText")
+    .text("Median Income ($)");
+
+}).catch(function(error){
+    console.log(error)
+})
